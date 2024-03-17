@@ -110,30 +110,48 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-alias mkdir="mkdir -pv"
-alias ls="ls -h --color=auto"
-alias cp="cp -i"
+# Reloading .zshrc
+alias rsh='source "$ZDOTDIR"/.zshrc'
 
-# Dotfiles
-alias dotfiles='/usr/bin/git --git-dir=$HOME/git/dotfiles/ --work-tree=$HOME'
+# System aliases
+alias mkdir="mkdir -pv"         # Automatically creates sub-directories and outputs names of created folders
+alias ls="ls -h --color=auto"   # Makes file sizes human-readable and adds color
+alias cp="cp -i"                # Always confirm overwriting exisiting files"
 
-alias irc='irssi'
-alias irssi='irssi --config=~/.config/irssi/config --home=~/.config/irssi'
-alias rsh='source ~/.config/zsh/.zshrc'
+# Program aliases (shorter names)
 alias news='newsraft'
 alias yt='ytfzf'
-alias email='neomutt'
 alias mutt='neomutt'
 alias trans='transmission-cli'
-alias lazyvim='nvim'
-alias vi='nvim'
-alias miami='sshpass -p $(pass Miami) ssh romanebm@ceclnx01.cec.miamioh.edu'
-alias up='cd ..'
-alias pass='PASSWORD_STORE_ENABLE_EXTENSIONS=true pass'
+
+# Script aliases
 alias pw='~/Scripts/fzfpw/fzfpw.sh'
 
-alias doppler='mpv https://radar.weather.gov/ridge/standard/KILN_loop.gif --loop --no-osc'
+# NeoVim aliases
+alias lazyvim='nvim'
+alias lazy='nvim'
+alias vi='nvim'
+alias vim='nvim'
 
+# Irssi aliases
+alias irssi='irssi --config=~/.config/irssi/config --home=~/.config/irssi'  # Make irssi use ~/.config/irssi/ rather than ~/.irssi/
+alias irc='irssi'
+
+# Misc
+alias dotfiles='/usr/bin/git --git-dir=$HOME/git/dotfiles/ --work-tree=$HOME'               # Git bare repository
+alias miami='ssh romanebm@ceclnx01.cec.miamioh.edu'                                         # Easier ssh into Miami's server
+alias doppler='mpv https://radar.weather.gov/ridge/standard/KILN_loop.gif --loop --no-osc'  # Opens doppler map from weather.gov in mpv
+
+# Alias for getting information from wttr.in
+weather() {
+    if [ -n "$1" ]; then
+        curl wttr.in/"$1"
+    else
+        curl wttr.in
+    fi
+}
+
+# Bookmarks file fzf menu
 url() {
     # Reset
     local color_Off='\033[0m'       # Text Reset
