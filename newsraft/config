@@ -3,6 +3,6 @@ bind o exec w3m "%l"
 
 # This will launch mpv in the background.
 bind m exec echo "Opening in mpv" && mpv --no-terminal "%l" &
-bind m exec osascript -e 'display notification "Opening %l in mpv"' && mpv --no-terminal "%l" &
+
 # This will launch mpv interactively.
 bind M exec mpv "%l"
